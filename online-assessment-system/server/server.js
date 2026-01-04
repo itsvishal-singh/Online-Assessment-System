@@ -6,12 +6,22 @@ const connectDB = require("./config/db");
 
 const app = express();
 
-// connect DB
+// DB
 connectDB();
 
 // middleware
 app.use(cors());
 app.use(express.json());
+
+// routes
+app.use("/api/auth", require("./routes/authRoutes"));
+app.use("/api/users", require("./routes/userRoutes"));
+app.use("/api/exams", require("./routes/examRoutes"));
+app.use("/api/questions", require("./routes/questionRoutes"));
+app.use("/api/results", require("./routes/resultRoutes"));
+
+
+
 
 // test route
 app.get("/", (req, res) => {
