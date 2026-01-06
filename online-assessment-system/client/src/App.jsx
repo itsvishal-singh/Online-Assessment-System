@@ -8,6 +8,9 @@ import Register from "./pages/Register";
 import Features from "./pages/Features";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import StudentDashboard from "./pages/StudentDashboard";
+import AdminDashboard from "./pages/AdminDashboard";
+
 
 function App() {
   return (
@@ -22,6 +25,7 @@ function App() {
           <Route path="/features" element={<Features />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
+          
         </Routes>
 
         <Footer />
