@@ -4,25 +4,23 @@ import { useEffect, useState } from "react";
 export default function Navbar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [role, setRole] = useState(null);
+  const [role, setRole] = useState("");
+  const [name, setName] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     const storedRole = localStorage.getItem("role");
+    const storedName = localStorage.getItem("name");
 
     if (token) {
       setIsLoggedIn(true);
       setRole(storedRole);
-    } else {
-      setIsLoggedIn(false);
-      setRole(null);
+      setName(storedName);
     }
   }, []);
 
   const handleLogout = () => {
     localStorage.clear();
-    setIsLoggedIn(false);
-    setRole(null);
     navigate("/login");
   };
 
@@ -42,15 +40,15 @@ export default function Navbar() {
         </span>
       </div>
 
-      {/* COMMON LINKS */}
+      {/* LINKS */}
       <ul className="hidden md:flex gap-8 font-medium">
         <li><NavLink to="/" className={linkClass}>Home</NavLink></li>
 
-        {isLoggedIn && role === "student" && (
+        {role === "student" && (
           <li><NavLink to="/student" className={linkClass}>Dashboard</NavLink></li>
         )}
 
-        {isLoggedIn && role === "admin" && (
+        {role === "admin" && (
           <>
             <li><NavLink to="/admin" className={linkClass}>Admin Dashboard</NavLink></li>
             <li><NavLink to="/admin/exams" className={linkClass}>Manage Exams</NavLink></li>
@@ -58,32 +56,39 @@ export default function Navbar() {
         )}
       </ul>
 
-      {/* AUTH ACTIONS */}
-      <div className="flex gap-4">
-        {!isLoggedIn ? (
-          <>
-            <button
-              onClick={() => navigate("/register")}
-              className="px-5 py-1.5 border border-white rounded-full hover:bg-white hover:text-black transition"
-            >
-              Register
-            </button>
-            <button
-              onClick={() => navigate("/login")}
-              className="px-5 py-1.5 bg-white text-black rounded-full hover:bg-gray-200 transition"
-            >
-              Login
-            </button>
-          </>
-        ) : (
+      {/* USER INFO + LOGOUT */}
+      {isLoggedIn ? (
+        <div className="flex items-center gap-4">
+          <div className="text-sm bg-[#132c4f] px-4 py-1.5 rounded-full">
+            👤 <span className="font-semibold">{name}</span>{" "}
+            <span className="text-gray-300">
+              ({role})
+            </span>
+          </div>
+
           <button
             onClick={handleLogout}
             className="px-5 py-1.5 bg-red-500 text-white rounded-full hover:bg-red-600 transition"
           >
             Logout
           </button>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="flex gap-4">
+          <button
+            onClick={() => navigate("/register")}
+            className="px-5 py-1.5 border border-white rounded-full hover:bg-white hover:text-black transition"
+          >
+            Register
+          </button>
+          <button
+            onClick={() => navigate("/login")}
+            className="px-5 py-1.5 bg-white text-black rounded-full hover:bg-gray-200 transition"
+          >
+            Login
+          </button>
+        </div>
+      )}
     </nav>
   );
 }
