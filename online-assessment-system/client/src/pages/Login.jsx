@@ -14,8 +14,11 @@ export default function Login() {
 
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("role", res.data.user.role);
+      localStorage.setItem("name", res.data.user.name);
+
 
       navigate(res.data.user.role === "admin" ? "/admin" : "/student");
+      window.location.reload();
     } catch (err) {
       alert("Invalid email or password");
     }
