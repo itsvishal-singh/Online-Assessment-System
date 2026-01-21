@@ -4,9 +4,8 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#0b1a2e] text-white">
+    <div className="bg-gradient-to-r from-[#00f2fe] to-[#4facfe] text-white">
       <div className="max-w-7xl mx-auto px-8 py-14 grid grid-cols-1 lg:grid-cols-3 gap-10">
-
         {/* LEFT HERO CARD */}
         <div className="lg:col-span-2 bg-[#132c4f] rounded-[26px] shadow-2xl p-12">
           <h1 className="text-3xl font-bold text-center mb-8">
@@ -23,9 +22,7 @@ export default function Home() {
             </div>
 
             <div className="bg-black rounded-xl p-6 w-72 text-center shadow">
-              <p className="text-red-500 text-2xl font-bold">
-                INSTANT RESULTS
-              </p>
+              <p className="text-red-500 text-2xl font-bold">INSTANT RESULTS</p>
               <p className="text-sm text-gray-300 mt-2">
                 Get instant evaluation after submission
               </p>
