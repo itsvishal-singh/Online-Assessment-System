@@ -4,7 +4,7 @@ export default function Home() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gradient-to-r from-[#00f2fe] to-[#4facfe] text-white">
+    <div className="bg-gradient-to-t from-[#131038] to-[#070014] text-white">
       <div className="max-w-7xl mx-auto px-8 py-14 grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* LEFT HERO CARD */}
         <div className="lg:col-span-2 bg-[#132c4f] rounded-[26px] shadow-2xl p-12">
